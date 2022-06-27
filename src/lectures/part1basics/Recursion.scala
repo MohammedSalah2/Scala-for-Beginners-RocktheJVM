@@ -45,17 +45,17 @@ object Recursion extends App{
   println(greeting("hello", 3, ""))
   // In this instance we are looping, therefore we add an accumulator
 
-  def isPrime(n: Int): Boolean = {
-    def isPrimeTailrec(t: Int, isStillPrime: Boolean): Boolean =
-      if (!isStillPrime) false
-      else if (t <= 1) true
-      else isPrimeTailrec(t - 1, n & t != 0 && isStillPrime)
+ // def isPrime(n: Int): Boolean = {
+   // def isPrimeTailrec(t: Int, isStillPrime: Boolean): Boolean =
+     // if (!isStillPrime) false
+      //else if (t <= 1) true
+      //else isPrimeTailrec(t - 1, n & t != 0 && isStillPrime)
 
-      isPrimeTailrec(n / 2, true)
-  }
+      //isPrimeTailrec(n / 2, true)
+  //}true
 
-  println(isPrime(2003))
-  println(isPrime(269))
+  //println(isPrime(2003))
+  //println(isPrime(269))
 
 
 
