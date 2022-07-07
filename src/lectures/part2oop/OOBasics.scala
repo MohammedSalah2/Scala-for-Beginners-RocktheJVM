@@ -9,6 +9,11 @@ object OOBasics extends App {
   println(person.x)
   person.greet("Daniel")
 
+  val author = new Writer("Charles", "Dickens", 1812)
+  val novel = new Novel("Great Expectations", 1861, author)
+
+  println(novel.authorAge)
+
 }
 
 // constructor - every single instance of Person must be constructed by passing in a name and age
@@ -27,5 +32,41 @@ class Person(name: String, val age: Int) {
   def this(name: String) = this(name, 0)
   def this() = this("John Doe")
 
-
 }
+
+/*
+  Novel and a Writer class
+
+  Writer: first name, surname, year
+    - method full name
+
+  Novel: name, year of release, author
+  - authorAge
+  - isWrittenBy(author)
+  - copy(new year of release) = new instance of Novel
+ */
+
+/*
+  Counter class
+   - receives an int value
+   - method current count
+   - method to increment/decrement => new Counter
+   - overload inc/dec to receive and amount
+ */
+
+
+
+class Writer(firstName: String, surName: String, val year: Int)  {
+  def fullName: String = firstName + "" + surName
+}
+
+class Novel(name: String, year: Int, author: Writer) {
+  def authorAge = year - author.year
+  def isWrittenBy(author: Writer) = author == this.author
+  def copy(newYear: Int) : Novel = new Novel(name, newYear, author)
+}
+
+
+
+
+
