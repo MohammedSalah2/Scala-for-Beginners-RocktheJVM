@@ -27,7 +27,10 @@ object MethodNotations extends App{
   // "operators in Scala
   val tom = new Person("Tom", "Fight Club")
   println(mary + tom)
-  println(1.+(2))
+  println(mary.+(tom))
+
+  println(1 + 2)
+  println(1.+(2)) // equivalent
 
   // ALL OPERATORS ARE METHODS
   // Akka actors have ! ?
