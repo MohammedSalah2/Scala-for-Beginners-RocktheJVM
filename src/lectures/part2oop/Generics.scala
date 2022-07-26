@@ -45,6 +45,8 @@ object Generics extends App {
   class Cage[A <: Animal] (animal: A)         // here Cage is only accepting type parameters A which are subtypes of Animal
   val cage = new Cage(new Dog)
 
+  // expand MyList to be generic
+
 
 
 
