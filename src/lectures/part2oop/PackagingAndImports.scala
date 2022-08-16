@@ -25,7 +25,7 @@ object PackagingAndImports extends App {
 
   // 1. use Fully Qualified names
 
-  val date = new Date()
+ //val date = new Date()
   val sqlDate = new java.sql.Date(2018, 5, 4)
   // 2. use aliasing
 
