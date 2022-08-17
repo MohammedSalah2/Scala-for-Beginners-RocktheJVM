@@ -57,14 +57,7 @@ object WhatsAFunction extends App {
 
 
 
-
-
-
-
-
-
-
-
+  
 
   trait MyFunction[A, B] {
     def apply(element: A): B
