@@ -22,7 +22,7 @@ object WhatsAFunction extends App {
 
   println(stringToIntConverter("3") + 4)
 
-  val adder = new Function2[Int, Int, Int] {
+  val bloo = new Function2[Int, Int, Int] {
     override def apply(a: Int, b: Int): Int = a + b
   }
 
@@ -40,7 +40,7 @@ object WhatsAFunction extends App {
 
 
       def concatenator = new ((String, String) => String) {
-        override def apply(a: String, b: String): String = a + b
+        override def apply(v1: String, v2: String): String = v1 + v2
       }
       println(concatenator("Mohammed ", "Salah"))
 
@@ -62,5 +62,7 @@ object WhatsAFunction extends App {
   trait MyFunction[A, B] {
     def apply(element: A): B
   }
+
+
 
 }
