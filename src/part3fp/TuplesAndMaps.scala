@@ -1,5 +1,7 @@
 package part3fp
 
+import java.net.SocketImpl
+
 object TuplesAndMaps extends App{
 
   // tuples = finite ordered "lists"
@@ -13,14 +15,16 @@ object TuplesAndMaps extends App{
   val aMap: Map[String, Int] = Map()
 
   val phonebook = Map(("Jim", 555), "Daniel" -> 789).withDefaultValue(-1) // <- this prevents an error in the compiler if what you're looking for does not exists
+                                    //  ^ List[String]
   // a -> b is sugar for (a, b)
+
   println(phonebook)
 
   // map ops
   println(phonebook.contains("Jim"))
   println(phonebook("Mary")) // this is using the .apply method on phonebook
 
-  // add a [airing
+  // add a pairing
   val newPairing = "Mary" -> 678
   val newPhonebook = phonebook + newPairing // this is doable since maps are not immutable
   println(newPhonebook)
@@ -39,6 +43,55 @@ object TuplesAndMaps extends App{
   println(List(("Daniel", 555)).toMap)
   val names = List("Bob", "James", "Angela", "Mary", "Daniel", "Jim")
   println(names.groupBy(name => name.charAt(0)))
+
+  /*
+    1. What would happen if I had two original entries "Jim" -> 555 and "JIM" -> 900?
+
+    !!! careful with mapping keys
+
+    2. Overly simplified social network based on maps
+       Person = String
+       - add a person to the network
+       - remove
+       - friend (mutual)
+       - unfriend
+
+       - number of friends of a person
+       - person with most friends
+       - how many people have NO friends
+       - if there is a social connection between two people (direct or not)
+   */
+
+  def add(socialNetwork: Map[String, Set[String]], person: String): Map[String, Set[String]] =
+    socialNetwork + (person -> Set())
+
+  def friend(socialNetwork: Map[String, Set[String]], a: String, b: String): Map[String, Set[String]] = {
+    val friendsA = socialNetwork(a)
+    val friendsB = socialNetwork(b)
+
+    socialNetwork + (a -> (friendsA + b)) + (b -> (friendsB + a))
+  }
+
+  def unfriend(socialNetwork: Map[String, Set[String]], a: String, b: String): Map[String, Set[String]] = {
+    val friendsA = socialNetwork(a)
+    val friendsB = socialNetwork(b)
+
+    socialNetwork + (a -> (friendsA + b)) + (b -> (friendsB + a))
+  }
+
+  def remove(socialNetwork: Map[String, Set[String]], person: String): Map[String, Set[String]] = {
+    def removeAux(friends: Set[String], networkAcc: Map[String, Set[String]]): Map[String, Set[String]] =
+      if (friends.isEmpty) networkAcc
+      else removeAux(friends.tail, unfriend(networkAcc, person, friends.head))
+
+    val unfriended = removeAux(socialNetwork(person), socialNetwork)
+    unfriended - person
+
+  }
+
+
+
+
 
 
 
