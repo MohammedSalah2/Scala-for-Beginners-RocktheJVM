@@ -1,5 +1,5 @@
 package part3fp
 
-object Try {
+object Try extends App{
 
 }
