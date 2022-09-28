@@ -61,5 +61,26 @@ object AdvancedPatternMatching extends App{
 
   println(mathProperty)
 
+  // infix patterns
+  // they only work when there are two values in the case class
+  case class Or[A, B](a: A, b: B)
+  val either = Or(2, "two")
+  val humanDescription = either match {
+    case number Or string => s"$number is written as $string"
+  }
+  println(humanDescription)
+
+  // decomposing sequences
+  val vararg = numbers match {
+    case List(1, _*) => "starting with 1"
+  }
+
+  abstract class MyList[+A] {
+    def head: A = ???
+    def tail: MyList[A] = ???
+  }
+  case object Empty extends MyList[Nothing]
+  case class Cons[+A](override val head: A, override val tail: MyList[A]) extends MyList[A]
+
 
 }
