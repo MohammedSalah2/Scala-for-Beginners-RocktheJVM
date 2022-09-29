@@ -82,5 +82,27 @@ object AdvancedPatternMatching extends App{
   case object Empty extends MyList[Nothing]
   case class Cons[+A](override val head: A, override val tail: MyList[A]) extends MyList[A]
 
+  object MyList {
+    def unapplySeq[A](list: MyList[A]): Option[Seq[A]] =
+      if (list == Empty) Some(Seq.empty)
+      else unapplySeq(list.tail).map(list.head +: _)
+  }
+
+  val myList: MyList[Int] = Cons(1, Cons(2, Cons(3, Empty)))
+  val decomposed = myList match {
+    case MyList(1, 2, _*) => "starting with 1, 2"
+    case _ => "something else"
+  }
+
+  println(decomposed)
+
+  // custom return types for unapply
+  // isEmpty: Boolean, get: something
+
+  abstract class Wrapper[T] {
+    def isEmpty: Boolean
+
+  }
+
 
 }
