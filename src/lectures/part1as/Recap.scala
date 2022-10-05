@@ -6,6 +6,7 @@ object Recap extends App{
 
   val aCondition: Boolean = false
   val aConditionedVal = if (aCondition) 42 else 65
+  println(aConditionedVal)
   // Instruction - executed to do something in sequence
   // Expression - in functional programmes like Scala we construct our programmes through expressions
 
@@ -62,14 +63,14 @@ object Recap extends App{
 
   // exceptions and try/catch/finally
 
-  val throwsException = throw new RuntimeException // Nothing
-  val aPotentialFailure = try {
-    throw new RuntimeException
-  } catch {
-    case e: Exception => "I caught an exception"
-  } finally {
-    println("some logs")
-  }
+//  val throwsException = throw new RuntimeException // Nothing
+//  val aPotentialFailure = try {
+//    throw new RuntimeException
+//  } catch {
+//    case e: Exception => "I caught an exception"
+//  } finally {
+//    println("some logs")
+//  }
   // package and imports
 
   // functional programming

@@ -16,7 +16,7 @@ object AdvancedPatternMatching extends App{
     - some special magic like above
    */
 
-  // below is how you pattern match when you dont have a case class like Person
+  // below is how you pattern match when you don't have a case class like Person
   // case Person ties to object Person not class Person
   class Person(val name: String, val age: Int)
 
